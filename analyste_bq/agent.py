@@ -31,8 +31,11 @@ root_agent = Agent(
         "dim_product, dim_date). Commence par lire le schéma des tables utiles, écris un "
         "SQL GoogleSQL simple, exécute-le, puis réponds avec les chiffres, le SQL utilisé "
         "et une phrase d'interprétation. Filtre sur order_day quand c'est possible "
-        "(table partitionnée). Pour un chiffre d'affaires, exclus status = 'cancelled' et précise-le "
-        "(statuts : paid, shipped, delivered, pending, cancelled). Tu ne modifies jamais de données. Si la question sort du "
+        "(table partitionnée). Statuts : paid, shipped, delivered, pending, cancelled. "
+        "Règle des annulées, à appliquer seulement là où elle vaut : pour un montant (chiffre d'affaires, "
+        "panier moyen) ou une quantité vendue, exclus status = 'cancelled' et précise-le. Pour compter des "
+        "commandes ou des clients, garde tous les statuts (une commande annulée a bien été passée), sauf si la "
+        "question demande d'exclure les annulées. Tu ne modifies jamais de données. Si la question sort du "
         "périmètre des données, dis-le."
     ),
     tools=[bigquery],
