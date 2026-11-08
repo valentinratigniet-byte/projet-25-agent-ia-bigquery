@@ -9,6 +9,11 @@ réponse est connue**.
 
 **Résultat : 9 réponses justes sur 10.** L'erreur restante est documentée plus bas : c'est la plus instructive.
 
+**Démo en ligne : [agent-ia.76.13.43.130.sslip.io](https://agent-ia.76.13.43.130.sslip.io)** (identifiants sur
+demande). Elle tourne dans un conteneur sur un VPS, derrière un mot de passe, avec un compte de service qui n'a
+que deux droits : lancer des requêtes et lire le dataset `marts`. Les requêtes du projet sont plafonnées à 16 Go
+par jour, ce qui reste sous l'offre gratuite de BigQuery.
+
 ## Contexte
 
 Un agent qui « parle à la base » est facile à montrer et difficile à croire : un SQL qui s'exécute n'est pas un
