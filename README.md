@@ -1,6 +1,6 @@
 # Agent IA sur BigQuery : un analyste qui écrit son SQL, et sa note
 
-![Google ADK 2.13](https://img.shields.io/badge/Google_ADK-2.13-4285F4) ![Gemini](https://img.shields.io/badge/mod%C3%A8le-Gemini-8E75B2) ![BigQuery](https://img.shields.io/badge/BigQuery-lecture_seule-669DF6) ![Licence MIT](https://img.shields.io/badge/licence-MIT-555)
+[![CI](https://github.com/valentinratigniet-byte/projet-25-agent-ia-bigquery/actions/workflows/ci.yml/badge.svg)](https://github.com/valentinratigniet-byte/projet-25-agent-ia-bigquery/actions/workflows/ci.yml) ![Google ADK 2.13](https://img.shields.io/badge/Google_ADK-2.13-4285F4) ![Gemini](https://img.shields.io/badge/mod%C3%A8le-Gemini-8E75B2) ![BigQuery](https://img.shields.io/badge/BigQuery-lecture_seule-669DF6) ![Licence MIT](https://img.shields.io/badge/licence-MIT-555)
 
 Un agent conversationnel qui répond en français aux questions sur un entrepôt de ventes BigQuery : il lit le
 schéma, écrit le SQL, l'exécute et répond avec le chiffre, la requête et une interprétation. Il est construit avec

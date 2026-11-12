@@ -1,0 +1,38 @@
+# Contrôles hors connexion : l'évaluation et lookml/verifier.py interrogent BigQuery (compte de service),
+# ils restent manuels. Ici : le code compile, chaque .lkml s'analyse, le jeu d'évaluation est cohérent.
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  controles:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install lkml==1.3.7
+      - name: "Code Python compilable"
+        run: python -m compileall -q analyste_bq eval lookml
+      - name: "Fichiers LookML analysables"
+        run: |
+          python - <<'PY'
+          import lkml, pathlib
+          fichiers = list(pathlib.Path("lookml").rglob("*.lkml"))
+          assert fichiers, "aucun fichier .lkml"
+          for p in fichiers:
+              lkml.load(p.read_text(encoding="utf-8"))
+          print(len(fichiers), "fichiers LookML OK")
+          PY
+      - name: "Jeu d'évaluation cohérent"
+        run: |
+          python - <<'PY'
+          import json
+          q = json.load(open("eval/questions.json", encoding="utf-8"))
+          print(type(q).__name__, len(q), "entrées")
+          assert len(q) == 10, "l'évaluation porte sur 10 questions"
+          PY
